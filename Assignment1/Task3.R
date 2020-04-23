@@ -15,13 +15,13 @@ paste(sum(Churn$Churn) / nrow(Churn) * 100, "%", sep="")
 frequentlyCalled <- data.frame(Churn[Churn$CustServCalls >= 5,])
 notFrequentlyCalled <- data.frame(Churn[Churn$CustServCalls < 5,])
 
-paste(nrow(frequentlyCalled) / sum(frequentlyCalled$Churn), "frequently called customers cancelation percentage")
-paste(nrow(notFrequentlyCalled) / sum(notFrequentlyCalled$Churn), "not frequently called customers cancelation percentage")
+paste(sum(frequentlyCalled$Churn) / nrow(frequentlyCalled) * 100, "Frequently called customers cancelation percentage")
+paste(sum(notFrequentlyCalled$Churn) / nrow(notFrequentlyCalled) * 100, "Not frequently called customers cancelation percentage")
 
 # D
 median <- median(Churn[order(Churn$AccountLength),]$AccountLength)
 unloyalCustomers <- data.frame(Churn[Churn$AccountLength < median,])
-loyalCustomers <- data.frame(Churn[Churn$AccountLength > median,])
+loyalCustomers <- data.frame(Churn[Churn$AccountLength >= median,])
 
-paste(nrow(unloyalCustomers) / sum(unloyalCustomers$Churn), "Unloyal customers cancelation percentage")
-paste(nrow(loyalCustomers) / sum(loyalCustomers$Churn), "Loyal customers cancelation percentage")
+paste(sum(unloyalCustomers$Churn) / nrow(unloyalCustomers) * 100, "Unloyal customers cancelation percentage")
+paste(sum(loyalCustomers$Churn) / nrow(loyalCustomers) * 100, "Loyal customers cancelation percentage")
